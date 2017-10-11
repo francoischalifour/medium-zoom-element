@@ -1,0 +1,27 @@
+{
+  "name": "medium-zoom-element",
+  "version": "0.0.0-development",
+  "description": "Medium Zoom HTML Element",
+  "license": "MIT",
+  "repository": "francoischalifour/medium-zoom-element",
+  "author": {
+    "name": "Francois Chalifour",
+    "email": "francois.chalifour@gmail.com",
+    "url": "https://francoischalifour.com"
+  },
+  "main": "dist/medium-zoom.element.js",
+  "scripts": {
+    "build": "rollup --config",
+    "dev": "rollup --config --watch",
+    "prettier": "prettier --write './*.js'"
+  },
+  "dependencies": {
+    "medium-zoom": "^0.2.0"
+  },
+  "devDependencies": {
+    "prettier": "^1.7.4",
+    "rollup": "^0.50.0",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-watch": "^4.3.1"
+  }
+}
