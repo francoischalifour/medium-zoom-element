@@ -6,6 +6,12 @@ const camelCased = string =>
 const template = document.createElement('template')
 template.innerHTML = `
 <style>
+  :host {
+    display: block;
+  }
+  img {
+    max-width: 100%;
+  }
   .medium-zoom-image {
     cursor: zoom-in;
   }
