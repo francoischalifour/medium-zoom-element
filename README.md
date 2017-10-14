@@ -17,17 +17,21 @@ Include [`dist/medium-zoom.element.js`](dist/medium-zoom.element.js) in your HTM
 ></medium-zoom>
 ```
 
-## Attributes
+## Options
 
-| Attribute         | Description                                                       |
-|-------------------|-------------------------------------------------------------------|
-| margin            | Space outside the zoomed image                                    |
-| background        | Color of the overlay                                              |
-| scroll-offset     | Number of pixels to scroll to dismiss the zoom                    |
-| disable-metaclick | Disables the action on meta click (opens the link / image source) |
-| zoom-target       | Specifies the high definition image to show on zoom               |
+| Attribute           | Description                                                       |
+|---------------------|-------------------------------------------------------------------|
+| `src`               | Source of the image                                               |
+| `alt`               | Alternative text for the image                                    |
+| `width`             | Width of the image                                                |
+| `height`            | Height of the image                                               |
+| `margin`            | Space outside the zoomed image                                    |
+| `background`        | Color of the overlay                                              |
+| `scroll-offset`     | Number of pixels to scroll to dismiss the zoom                    |
+| `disable-metaclick` | Disables the action on meta click (opens the link / image source) |
+| `zoom-target`       | Source of zoomed image                                            |
 
-Refer to [`medium-zoom > Options`](https://github.com/francoischalifour/medium-zoom#options) for default values.
+Refer to [`medium-zoom`'s options](https://github.com/francoischalifour/medium-zoom#options) for default values.
 
 ```html
 <medium-zoom
@@ -43,7 +47,7 @@ Refer to [`medium-zoom > Options`](https://github.com/francoischalifour/medium-z
 
 ## Methods
 
-Refer to [`medium-zoom > Methods`](https://github.com/francoischalifour/medium-zoom#methods).
+Refer to [`medium-zoom`'s methods](https://github.com/francoischalifour/medium-zoom#methods).
 
 ## Dev
 
