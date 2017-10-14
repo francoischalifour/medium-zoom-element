@@ -4,11 +4,9 @@
 
 This is a web component that bundles the [`medium-zoom`](https://github.com/francoischalifour/medium-zoom) API.
 
-⚠️ *In development*
-
 ## Usage
 
-Include [`dist/medium-zoom.element.js`](dist/medium-zoom.element.js) in your HTML page and use the `medium-zoom` web component.
+Include [`dist/medium-zoom.element.min.js`](dist/medium-zoom.element.min.js) in your HTML page and use the `medium-zoom` web component.
 
 ```html
 <medium-zoom
@@ -53,7 +51,7 @@ Refer to [`medium-zoom`'s methods](https://github.com/francoischalifour/medium-z
 
 * Run `yarn` to install Node dependencies
 * Run `yarn dev` to watch changes and rebuild the library
-* Open [`examples/index.html`](examples/index.html) to check your changes (it includes [`dist/medium-zoom.element.js`](dist/medium-zoom.element.js) which is watched with `npm run dev`)
+* Open [`examples/index.html`](examples/index.html) to check your changes (it includes [`dist/medium-zoom.element.min.js`](dist/medium-zoom.element.min.js) which is watched with `npm run dev`)
 
 ## License
 
