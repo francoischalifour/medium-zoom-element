@@ -19,6 +19,13 @@
   </a>
 </p>
 
+<p align="center">
+  <strong>
+    <a href="https://codepen.io/francoischalifour/pen/QqZLyz">🔬 Playground</a> ・
+    <a href="https://medium-zoom.francoischalifour.com">🔎 Demo</a>
+  </strong>
+</p>
+
 > Web component bundling the [`medium-zoom`](https://github.com/francoischalifour/medium-zoom) API.
 
 ## Usage
