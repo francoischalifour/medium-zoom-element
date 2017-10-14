@@ -1,3 +1,10 @@
+/*
+ * medium-zoom-element v0.0.1
+ * Medium Zoom HTML Element
+ * Copyright 2017 Francois Chalifour
+ * https://github.com/francoischalifour/medium-zoom-element
+ * MIT License
+ */
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
 	typeof define === 'function' && define.amd ? define(factory) :
