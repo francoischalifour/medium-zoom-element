@@ -9,7 +9,7 @@
     "email": "francois.chalifour@gmail.com",
     "url": "https://francoischalifour.com"
   },
-  "main": "dist/medium-zoom.element.min.js",
+  "main": "dist/medium-zoom-element.min.js",
   "scripts": {
     "build": "rollup --config",
     "dev": "rollup --config --watch",

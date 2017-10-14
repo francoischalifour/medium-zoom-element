@@ -50,5 +50,6 @@ export default [
     format: 'umd',
     name: 'MediumZoomElement'
   },
+  banner,
   plugins
 }))
