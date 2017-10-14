@@ -31,7 +31,7 @@ export default class MediumZoom extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return [...MediumZoom.optionAttributes, 'width', 'height']
+    return [...MediumZoom.optionAttributes, 'src', 'alt', 'width', 'height']
   }
 
   static getOptionName(value) {
