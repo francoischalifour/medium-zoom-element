@@ -26,9 +26,9 @@
 From [npm](https://www.npmjs.com) or [Yarn](https://yarnpkg.com):
 
 ```sh
-npm install --save medium-zoom
+npm install --save medium-zoom-element
 # or
-yarn add medium-zoom
+yarn add medium-zoom-element
 ```
 
 From a [CDN](https://en.wikipedia.org/wiki/Content_delivery_network):
