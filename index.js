@@ -20,7 +20,7 @@ template.innerHTML = `
 `
 
 export default class MediumZoom extends HTMLElement {
-  static get optionAttributes() {
+  static get observedOptions() {
     return [
       'margin',
       'background',
@@ -32,7 +32,7 @@ export default class MediumZoom extends HTMLElement {
 
   static get observedAttributes() {
     return [
-      ...MediumZoom.optionAttributes,
+      ...MediumZoom.observedOptions,
       'src',
       'alt',
       'width',
@@ -51,22 +51,38 @@ export default class MediumZoom extends HTMLElement {
     this.attachShadow({ mode: 'open' })
     this.shadowRoot.appendChild(template.content.cloneNode(true))
     this.image = this.shadowRoot.querySelector('img')
+    this.zoom = mediumZoom(this.image)
 
-    // Attach all unknown DOM attributes to the image
-    Array.from(this.attributes)
-      .filter(
-        attribute => !MediumZoom.observedAttributes.includes(attribute.name)
-      )
-      .filter(attribute => !this.image.hasAttribute(attribute.name))
-      .forEach(({ name, value }) => this.image.setAttribute(name, value))
+    // Attach all zoom methods to the component
+    Object.keys(this.zoom).forEach(method => (this[method] = this.zoom[method]))
 
     // Add accessibility attributes to the component
     this.setAttribute('role', 'img')
     this.setAttribute('aria-label', this.alt)
+  }
 
-    // Attach all zoom methods to the component
-    this.zoom = mediumZoom(this.image)
-    Object.keys(this.zoom).forEach(method => (this[method] = this.zoom[method]))
+  disconnectedCallback() {
+    this.zoom.detach()
+  }
+
+  adoptedCallback() {
+    this.zoom.hide()
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (MediumZoom.observedOptions.includes(name)) {
+      if (name === 'zoom-target') {
+        this.image.setAttribute('data-zoom-target', newValue)
+        return
+      }
+
+      this.zoom.update({
+        [MediumZoom.getOptionName(name)]: this[MediumZoom.getOptionName(name)]
+      })
+    } else {
+      // Attach all DOM attributes to the image
+      this.image.setAttribute(name, newValue)
+    }
   }
 
   get src() {
@@ -149,29 +165,6 @@ export default class MediumZoom extends HTMLElement {
     value
       ? this.setAttribute('disable-metaclick', value)
       : this.removeAttribute('disable-metaclick')
-  }
-
-  disconnectedCallback() {
-    this.zoom.detach()
-  }
-
-  adoptedCallback() {
-    this.zoom.hide()
-  }
-
-  attributeChangedCallback(name, oldValue, newValue) {
-    if (MediumZoom.optionAttributes.includes(name)) {
-      if (name === 'zoom-target') {
-        this.image.setAttribute('data-zoom-target', newValue)
-        return
-      }
-
-      this.zoom.update({
-        [MediumZoom.getOptionName(name)]: this[MediumZoom.getOptionName(name)]
-      })
-    } else {
-      this.image.setAttribute(name, newValue)
-    }
   }
 }
 
