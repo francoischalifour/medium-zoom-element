@@ -20,8 +20,18 @@ template.innerHTML = `
 `
 
 export default class MediumZoom extends HTMLElement {
+  static get optionAttributes() {
+    return [
+      'margin',
+      'background',
+      'scroll-offset',
+      'disable-metaclick',
+      'zoom-target'
+    ]
+  }
+
   static get observedAttributes() {
-    return ['margin', 'background', 'scroll-offset', 'disable-metaclick']
+    return [...MediumZoom.optionAttributes, 'width', 'height']
   }
 
   static getOptionName(value) {
@@ -33,31 +43,22 @@ export default class MediumZoom extends HTMLElement {
 
     this.attachShadow({ mode: 'open' })
     this.shadowRoot.appendChild(template.content.cloneNode(true))
+    this.image = this.shadowRoot.querySelector('img')
 
+    // Attach all unknown DOM attributes to the image
+    Array.from(this.attributes)
+      .filter(
+        attribute => !MediumZoom.observedAttributes.includes(attribute.name)
+      )
+      .filter(attribute => !this.image.hasAttribute(attribute.name))
+      .forEach(({ name, value }) => this.image.setAttribute(name, value))
+
+    // Add accessibility attributes to the component
     this.setAttribute('role', 'img')
     this.setAttribute('aria-label', this.alt)
 
-    const image = this.shadowRoot.querySelector('img')
-    this.src && image.setAttribute('src', this.src)
-    this.width
-      ? image.setAttribute('width', this.width)
-      : (image.style.width = '100%')
-    this.height && image.setAttribute('height', this.height)
-    this.alt && image.setAttribute('alt', this.alt)
-    this.zoomTarget && image.setAttribute('data-zoom-target', this.zoomTarget)
-
-    const options = Array.from(this.attributes).reduce((options, { name }) => {
-      return MediumZoom.observedAttributes.includes(name)
-        ? Object.assign(options, {
-            [MediumZoom.getOptionName(name)]: this[
-              MediumZoom.getOptionName(name)
-            ]
-          })
-        : options
-    }, {})
-
-    this.zoom = mediumZoom(image, options)
-
+    // Attach all zoom methods to the component
+    this.zoom = mediumZoom(this.image)
     Object.keys(this.zoom).forEach(method => (this[method] = this.zoom[method]))
   }
 
@@ -152,9 +153,18 @@ export default class MediumZoom extends HTMLElement {
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    this.zoom.update({
-      [MediumZoom.getOptionName(name)]: this[MediumZoom.getOptionName(name)]
-    })
+    if (MediumZoom.optionAttributes.includes(name)) {
+      if (name === 'zoom-target') {
+        this.image.setAttribute('data-zoom-target', newValue)
+        return
+      }
+
+      this.zoom.update({
+        [MediumZoom.getOptionName(name)]: this[MediumZoom.getOptionName(name)]
+      })
+    } else {
+      this.image.setAttribute(name, newValue)
+    }
   }
 }
 
