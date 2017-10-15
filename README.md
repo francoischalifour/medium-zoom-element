@@ -30,17 +30,20 @@
 
 ## Usage
 
+`medium-zoom-element` requires a peer of [`medium-zoom`](https://github.com/francoischalifour/medium-zoom).
+
 From [npm](https://www.npmjs.com) or [Yarn](https://yarnpkg.com):
 
 ```sh
-npm install --save medium-zoom-element
+npm install --save medium-zoom medium-zoom-element
 # or
-yarn add medium-zoom-element
+yarn add medium-zoom medium-zoom-element
 ```
 
 From a [CDN](https://en.wikipedia.org/wiki/Content_delivery_network):
 
 ```html
+<script src="https://unpkg.com/medium-zoom@0/dist/medium-zoom.min.js"></script>
 <script src="https://unpkg.com/medium-zoom-element@0/dist/medium-zoom-element.min.js"></script>
 ```
 

@@ -50,6 +50,8 @@ export default [
     format: 'umd',
     name: 'MediumZoomElement'
   },
+  external: ['medium-zoom'],
+  globals: { 'medium-zoom': 'mediumZoom' },
   banner,
   plugins
 }))
