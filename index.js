@@ -1,5 +1,12 @@
 import mediumZoom from 'medium-zoom'
 
+if (window && !window.mediumZoom) {
+  throw new Error(
+    'medium-zoom-element requires a peer of medium-zoom.\n' +
+      'See: https://github.com/francoischalifour/medium-zoom-element'
+  )
+}
+
 const camelCased = string =>
   string.replace(/-([a-z])/g, g => g[1].toUpperCase())
 
